@@ -1,13 +1,16 @@
 <template>
+   <div class="paginator-container">
+    <button v-if="this.page > 0" @click="changePage(page--)"> prev</button>
+    <button v-else> prev</button>
     <div class="paginator-wraper">
-      <div
-        v-for="pageNumber in this.totalPage"
-        :key="pageNumber"
+      <div  v-for="pageNumber in this.totalPage" :key="pageNumber"
         @click="changePage(pageNumber)"
         :class="{'active': this.page+1 === pageNumber,}">
-        {{ pageNumber }}&nbsp;
+        <div v-if="pageNumber > this.page-11 && pageNumber < this.page +11 "> {{ pageNumber }}&nbsp;</div>
       </div>
     </div>
+    <button @click="changePage(this.page+2)"> next</button> 
+   </div>
   </template>
   
   <script>
@@ -23,8 +26,8 @@
       },
     },
     methods: {
-      changePage(pageNumber) {
-        this.$emit("change", pageNumber);
+      changePage(number) {
+        this.$emit("change", number);
       },
     },
   };
@@ -32,12 +35,18 @@
   <style>
 .paginator-wraper{
     display: flex;
-    margin-bottom: 10px;
     cursor: pointer;
+    width: 470px;
+    justify-content: center;
+    overflow: hidden;
+}
+.paginator-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .active{
     color: blue;
     font-size: 1.1rem;
 }
-
 </style>

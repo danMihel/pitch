@@ -1,6 +1,7 @@
 <template>
   <div class="card-container">
-    <span class="doc__title"> {{ card.title }} </span>
+    <span class="doc__title"> {{ card.title }} %%{{card.id}} </span>
+    <div> Like</div>
   </div>
 </template>
 <script>
