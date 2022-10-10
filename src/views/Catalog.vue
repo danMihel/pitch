@@ -7,7 +7,7 @@
       :totalPage="this.$store.state.CatalogModule.totalPage"
     />
     <div v-for="item in this.$store.state.CatalogModule.catalog" :key="item.id">
-      <Card :card="item" :key="item.id" />
+      <Card  @change="addFav"  :card="item" :key="item.id" />
     </div>
   </div>
 </template>
@@ -26,6 +26,11 @@ export default {
       this.$store.dispatch("CatalogModule/onCatalog");
       console.log(this.$store.state.CatalogModule.currentPage, 'curren page');
     },
+    addFav(id){
+        console.log(id, 'asd')
+        this.$store.commit("FavouritesModule/setFavId", id);
+        this.$store.dispatch("FavouritesModule/onAddFavourites");
+      },
   },
   mounted() {
     this.$store.dispatch("CatalogModule/onCatalog");

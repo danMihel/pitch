@@ -1,7 +1,8 @@
 <template>
   <div class="card-container">
     <span class="doc__title"> {{ card.title }} %%{{card.id}} </span>
-    <div @click="add"> Like</div>
+    <div @click="add">Like</div>
+    <div v-if="card.isInFavourites"> inFavorit</div>
   </div>
 </template>
 <script>
@@ -9,8 +10,9 @@ export default {
   name: "card",
   methods: {
     add(){
-        console.log('add')
-    this.$store.dispatch("FavouritesModule/onAddFavourites");
+        this.$store.commit("FavouritesModule/setFavId", this.card.id);
+        this.$store.dispatch("FavouritesModule/onAddFavourites");
+        this.$store.dispatch("CatalogModule/onCatalog");
     }
   },
   props: {

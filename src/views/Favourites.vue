@@ -25,6 +25,7 @@
         this.$store.commit("FavouritesModule/setPage", pageNumber);
         this.$store.dispatch("FavouritesModule/onFavourites");
       },
+     
     },
     mounted() {
       this.$store.dispatch("FavouritesModule/onFavourites");

@@ -9,9 +9,13 @@ export const FavouritesModule = {
       favourites: [],
       currentPage: 0,
       totalPage: 0,
+      favId: 0,
     };
   },
   mutations: {
+    setFavId(state, num){
+        state.favId = num;
+    },
     setSpinner(state, bool) {
       state.isLoade = bool;
     },
@@ -30,7 +34,6 @@ export const FavouritesModule = {
       commit("setSpinner", false);
       return API.getCatalog("/commerce/products/favourites?", state.currentPage)
         .then((res) => {
-          console.log(res.data.data.productsFavourites);
           commit("setFavourites", res.data.data.productsFavourites);
         })
         .catch((error) => {
@@ -44,7 +47,6 @@ export const FavouritesModule = {
     async onPagination({ commit }) {
       return API.getPagination("/commerce/products/favourites?")
         .then((res) => {
-          console.log(res);
           commit(
             "setTotalPage",
             Math.ceil(res.data.data.productsFavourites.count / 50)
@@ -55,10 +57,9 @@ export const FavouritesModule = {
           API.errorHandler(error.status);
         });
     },
-    async onAddFavourites({ commit }) {
-        return API.addFavourites()
+    async onAddFavourites( {state}) {
+        return API.addFavourites(state.favId)
           .then((res) => {
-            console.log(res);
           })
           .catch((error) => {
             console.log(error, "error");

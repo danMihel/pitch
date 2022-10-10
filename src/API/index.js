@@ -41,20 +41,20 @@ export default {
     });
   },
 
-  async addFavourites(){
-    const url = '/commerce/products/favourites?'
-    return axios.post(this.baseURL + url, 
-        { 
-          product: 177865
-         },
+  async addFavourites(id) {
+    const url = "/commerce/products/favourites?";
+    return axios.post(
+      this.baseURL + url,
+      {
+        product: id,
+      },
       {
         headers: {
           account: this.accountID,
           Authorization: localStorage.accessToken,
         },
       }
-      
-      );
+    );
   },
 
   errorHandler(error) {

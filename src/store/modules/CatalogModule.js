@@ -30,6 +30,7 @@ export const CatalogModule = {
       commit("setSpinner", false);
       return API.getCatalog("/commerce/products?", state.currentPage)
         .then((res) => {
+            console.log(res)
           commit("setCatalog", res.data.data.products);
         })
         .catch((error) => {
