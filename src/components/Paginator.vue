@@ -1,7 +1,6 @@
 <template>
    <div class="paginator-container">
     <button v-if="this.page > 0" @click="changePage(page--)"> prev</button>
-    <button v-else> prev</button>
     <div class="paginator-wraper">
       <div  v-for="pageNumber in this.totalPage" :key="pageNumber"
         @click="changePage(pageNumber)"
@@ -9,7 +8,7 @@
         <div v-if="pageNumber > this.page-11 && pageNumber < this.page +11 "> {{ pageNumber }}&nbsp;</div>
       </div>
     </div>
-    <button @click="changePage(this.page+2)"> next</button> 
+    <button v-if="this.page < totalPage -1" @click="changePage(this.page+2)"> next</button>
    </div>
   </template>
   

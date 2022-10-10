@@ -66,5 +66,15 @@ export const FavouritesModule = {
             API.errorHandler(error.status);
           });
       },
+
+      async onDeleteFavourites( {state}) {
+        return API.deleteFavourites(state.favId)
+          .then((res) => {
+          })
+          .catch((error) => {
+            console.log(error, "error");
+            API.errorHandler(error.status);
+          });
+      },
   },
 };

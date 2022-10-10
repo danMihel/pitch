@@ -1,19 +1,29 @@
 <template>
   <div class="card-container">
-    <span class="doc__title"> {{ card.title }} %%{{card.id}} </span>
+    <span class="doc__title"> {{ card.title }} %%{{ card.id }} </span>
     <div @click="add">Like</div>
-    <div v-if="card.isInFavourites"> inFavorit</div>
+    <div v-if="card.isInFavourites" @click="del">inFavorit</div>
   </div>
 </template>
 <script>
 export default {
   name: "card",
   methods: {
-    add(){
-        this.$store.commit("FavouritesModule/setFavId", this.card.id);
-        this.$store.dispatch("FavouritesModule/onAddFavourites");
-        this.$store.dispatch("CatalogModule/onCatalog");
-    }
+    async add() {
+      await this.$store.commit("FavouritesModule/setFavId", this.card.id);
+      await this.$store.dispatch(
+        "FavouritesModule/onAddFavourites",
+        this.card.id
+      );
+      await this.$store.dispatch("CatalogModule/onCatalog");
+    },
+    async del() {
+      console.log("dell");
+      await this.$store.commit("FavouritesModule/setFavId", this.card.id);
+      await this.$store.dispatch("FavouritesModule/onDeleteFavourites", this.card.id);
+      await this.$store.dispatch("CatalogModule/onCatalog");
+      await this.$store.dispatch("FavouritesModule/onFavourites");
+    },
   },
   props: {
     card: {

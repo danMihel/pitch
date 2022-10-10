@@ -57,6 +57,18 @@ export default {
     );
   },
 
+  async deleteFavourites(id) {
+    const url = `/commerce/products/${id}/favourites?`;
+    return axios.delete(
+      this.baseURL + url,{
+        headers: {
+          account: this.accountID,
+          Authorization: localStorage.accessToken,
+        },
+      }
+    );
+  },
+
   errorHandler(error) {
     !error
       ? (store.state.AuthModule.errors = "Проверьте подключение к интернету")
