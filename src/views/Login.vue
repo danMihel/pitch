@@ -49,6 +49,7 @@
     methods: {
       async onSubmit() {
         this.$store.commit("AuthModule/setLogin", this.login);
+        console.log('submit')
         this.$store.commit("AuthModule/setPassword", this.password);
         this.$store.dispatch("AuthModule/onLogin");
       },
