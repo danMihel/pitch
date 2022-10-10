@@ -42,13 +42,19 @@ export default {
   },
 
   async addFavourites(){
-    const url = '/commerce/products/favourites payload: { product: {id} }'
-    return axios.post(this.baseURL + url, {
-      headers: {
-        account: this.accountID,
-        Authorization: localStorage.accessToken,
-      },
-    });
+    const url = '/commerce/products/favourites?'
+    return axios.post(this.baseURL + url, 
+        { 
+          product: 177865
+         },
+      {
+        headers: {
+          account: this.accountID,
+          Authorization: localStorage.accessToken,
+        },
+      }
+      
+      );
   },
 
   errorHandler(error) {

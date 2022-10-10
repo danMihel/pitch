@@ -24,13 +24,11 @@
       changePage(pageNumber) {
         this.$store.commit("FavouritesModule/setPage", pageNumber);
         this.$store.dispatch("FavouritesModule/onFavourites");
-        console.log(this.$store.state.FavouritesModule.currentPage, ' favourites curren page');
       },
     },
     mounted() {
       this.$store.dispatch("FavouritesModule/onFavourites");
       this.$store.dispatch("FavouritesModule/onPagination");
-      console.log(this.$store.state.FavouritesModule.currentPage, 'favourites paginator');
     },
   };
   </script>

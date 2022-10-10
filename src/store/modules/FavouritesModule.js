@@ -55,5 +55,15 @@ export const FavouritesModule = {
           API.errorHandler(error.status);
         });
     },
+    async onAddFavourites({ commit }) {
+        return API.addFavourites()
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((error) => {
+            console.log(error, "error");
+            API.errorHandler(error.status);
+          });
+      },
   },
 };
