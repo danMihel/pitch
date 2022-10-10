@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 import { AuthModule } from "@/store/modules/AuthModule";
+import {CatalogModule} from "@/store/modules/CatalogModule";
+import{FavouritesModule} from '@/store/modules/FavouritesModule'
 
 export default createStore({
   state: {
@@ -12,5 +14,7 @@ export default createStore({
   },
   modules: {
     AuthModule,
+    CatalogModule,
+    FavouritesModule
   }
 })
