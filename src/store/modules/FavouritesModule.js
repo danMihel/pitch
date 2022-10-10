@@ -26,9 +26,9 @@ export const FavouritesModule = {
     },
   },
   actions: {
-    async onFavourites({ commit }) {
+    async onFavourites({ commit, state  }) {
       commit("setSpinner", false);
-      return API.getFavourites({})
+      return API.getCatalog("/commerce/products/favourites?", state.currentPage)
         .then((res) => {
           console.log(res.data.data.productsFavourites);
           commit("setFavourites", res.data.data.productsFavourites);

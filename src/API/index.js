@@ -22,23 +22,8 @@ export default {
   },
 
   async getPagination(url) {
-    const items = `filters[aggregate]`
-    return axios.get(
-      this.baseURL + url + items,
-      {
-        headers: {
-          account: this.accountID,
-          Authorization: localStorage.accessToken,
-        },
-      }
-    );
-  },
-
-  async getCatalog() {
-    const url = "/commerce/products?";
-    const num = store.state.CatalogModule.currentPage;
-    const limit = `filters[offset]=${(num*50)}&filters[limit]=50`;
-    return axios.get(this.baseURL + url + limit, {
+    const items = `filters[aggregate]`;
+    return axios.get(this.baseURL + url + items, {
       headers: {
         account: this.accountID,
         Authorization: localStorage.accessToken,
@@ -46,10 +31,8 @@ export default {
     });
   },
 
-  async getFavourites() {
-    const url = "/commerce/products/favourites?";
-    const num = store.state.FavouritesModule.currentPage;
-    const limit = `filters[offset]=${(num*50)}&filters[limit]=50`;
+  async getCatalog(url, num) {
+    const limit = `filters[offset]=${num * 50}&filters[limit]=50`;
     return axios.get(this.baseURL + url + limit, {
       headers: {
         account: this.accountID,

@@ -26,11 +26,10 @@ export const CatalogModule = {
     },
   },
   actions: {
-    async onCatalog({ commit }) {
+    async onCatalog({ commit, state }) {
       commit("setSpinner", false);
-      return API.getCatalog({})
+      return API.getCatalog("/commerce/products?", state.currentPage)
         .then((res) => {
-            console.log(res.data.data.products)
           commit("setCatalog", res.data.data.products);
         })
         .catch((error) => {
