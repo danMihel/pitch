@@ -26,10 +26,8 @@ export default {
     changePage(pageNumber) {
       this.$store.commit("CatalogModule/setPage", pageNumber);
       this.$store.dispatch("CatalogModule/onCatalog");
-      console.log(this.$store.state.CatalogModule.currentPage, "curren page");
     },
     addFav(id) {
-      console.log(id, "asd");
       this.$store.commit("FavouritesModule/setFavId", id);
       this.$store.dispatch("FavouritesModule/onAddFavourites");
     },
@@ -37,7 +35,6 @@ export default {
   mounted() {
     this.$store.dispatch("CatalogModule/onCatalog");
     this.$store.dispatch("CatalogModule/onPagination");
-    console.log(this.$store.state.CatalogModule.currentPage);
   },
 };
 </script>

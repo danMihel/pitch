@@ -38,7 +38,6 @@ export const AuthModule = {
         password: this.state.AuthModule.password,
       })
         .then((res) => {
-          console.log(res);
           if (res.data.data.Authorization.length > 0) {
             localStorage.accessToken = res.data.data.Authorization;
             commit("setLogged", true);
@@ -57,10 +56,6 @@ export const AuthModule = {
     async onLogout({ commit }) {
       commit("setLogged", false);
       return API.login("/auth/logout")
-        .then((res) => {
-          console.log(res);
-        }).then(()=>{
-        })
     },
   },
 };

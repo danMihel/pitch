@@ -12,7 +12,6 @@ export default {
     name: "app",
     methods: {
       async logout() {
-        console.log('logout')
         this.$store.dispatch("AuthModule/onLogout");
         localStorage.clear();
       },
