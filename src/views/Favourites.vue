@@ -1,16 +1,17 @@
 <template>
-    <div v-if="this.$store.state.FavouritesModule.isLoade === true"  class="about">
+    <div   class="about">
       <h1>Favourites</h1>
       <Paginator
         @change="changePage"
         :page="this.$store.state.FavouritesModule.currentPage"
         :totalPage="this.$store.state.FavouritesModule.totalPage"
       />
-      <div v-for="item in this.$store.state.FavouritesModule.favourites" :key="item.id">
+      <div v-if="this.$store.state.FavouritesModule.isLoade === true" v-for="item in this.$store.state.FavouritesModule.favourites" :key="item.id">
         <Card :card="item.product" :key="item.id" />
       </div>
+      <div v-else class="favourites__spinner"></div>
     </div>
-    <div v-else class="favourites__spinner"></div>
+    
   </template>
   <script>
   import Card from "@/components/Card.vue";

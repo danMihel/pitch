@@ -25,7 +25,7 @@ export default {
       console.log("dell");
       await this.$store.commit("FavouritesModule/setFavId", this.card.id);
       await this.$store.dispatch("FavouritesModule/onDeleteFavourites", this.card.id);
-      this.fav = false;
+      this.fav = true;
       await this.$store.dispatch("FavouritesModule/onFavourites");
     },
   },
@@ -39,6 +39,9 @@ export default {
 </script>
 
 <style>
+.hidden{
+  display: none;
+}
 .card-container {
   margin: 10px 40px;
   padding: 10px;
@@ -53,19 +56,14 @@ export default {
   width: 40%;
   font-size: 1.1rem;
 }
-.like-icon{
+.like-icon img{
   height: 35px;
   width: 35px;
   padding: 10px;
   border-radius: 10px;
   border: solid rgb(219, 217, 217) 1px;
-  background-color: rgb(250, 250, 250);
 }
-.like-icon img{
-  height: 35px;
-  width: 35px;
-}
-.like-icon:hover{
+.like-icon img:hover{
   border: solid rgb(172, 171, 171) 1px;
   transition: 0.2s linear;
 }
