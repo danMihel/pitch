@@ -11,10 +11,7 @@ export default {
   methods: {
     async add() {
       await this.$store.commit("FavouritesModule/setFavId", this.card.id);
-      await this.$store.dispatch(
-        "FavouritesModule/onAddFavourites",
-        this.card.id
-      );
+      await this.$store.dispatch("FavouritesModule/onAddFavourites", this.card.id);
       await this.$store.dispatch("CatalogModule/onCatalog");
     },
     async del() {
