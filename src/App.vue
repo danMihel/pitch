@@ -4,10 +4,23 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/catalog">Catalog</router-link> |
     <router-link to="/favourites">Favourites</router-link> |
-    <span>Logout</span>
+    <router-link to="/login" @click="logout">Logout</router-link>
   </nav>
   <router-view/>
+ 
 </template>
+<script>
+export default {
+    name: "app",
+    methods: {
+      async logout() {
+        console.log('logout')
+        this.$store.dispatch("AuthModule/onLogout");
+        localStorage.clear();
+      },
+    },
+}
+</script>
 
 <style>
 #app {

@@ -1,4 +1,4 @@
-import API from "@/API/index"
+import API from "@/API/index";
 import router from "@/router";
 
 export const AuthModule = {
@@ -33,14 +33,13 @@ export const AuthModule = {
   actions: {
     async onLogin({ commit }) {
       commit("setSpinner", false);
-      return API.login({
-        login: this.state.AuthModule.login,
+      return API.login("/auth/login", {
+        username: this.state.AuthModule.login,
         password: this.state.AuthModule.password,
       })
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.data.data.Authorization.length > 0) {
-            console.log('save')
             localStorage.accessToken = res.data.data.Authorization;
             commit("setLogged", true);
             commit("setSpinner", true);
@@ -48,29 +47,21 @@ export const AuthModule = {
           }
         })
         .catch((error) => {
-          console.log(error, 'error')
-         API.errorHandler(error.status);
+          console.log(error, "error");
+          API.errorHandler(error.status);
         })
         .finally(() => {
           commit("setSpinner", true);
         });
     },
-    async onCatalog({ commit }) {
-      commit("setSpinner", false);
-      return API.getCatalog({
-        
-      })
+
+    async onLogout({ commit }) {
+      commit("setLogged", false);
+      return API.login("/auth/logout")
         .then((res) => {
-          console.log(res)
-        
+          console.log(res);
+        }).then(()=>{
         })
-        .catch((error) => {
-          console.log(error, 'error')
-         API.errorHandler(error.status);
-        })
-        .finally(() => {
-          commit("setSpinner", true);
-        });
     },
   },
 };

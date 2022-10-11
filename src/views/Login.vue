@@ -34,7 +34,6 @@
   <script>
   export default {
     name: "login",
-    components: {},
     data() {
       return {
         login: "test@test.ru",

@@ -5,20 +5,13 @@ export default {
   baseURL: "https://dev.api.cloud-atlas.online",
   accountID: "8b59a775077536f3b73bb774655b94f6",
 
-  async login() {
-    const url = "/auth/login";
-    return axios.post(
-      this.baseURL + url,
-      {
-        username: store.state.AuthModule.login,
-        password: store.state.AuthModule.password,
+  async login(url, params) {
+    return axios.post(this.baseURL + url, params, {
+      headers: {
+        account: this.accountID,
+        Authorization: localStorage.accessToken,
       },
-      {
-        headers: {
-          account: this.accountID,
-        },
-      }
-    );
+    });
   },
 
   async getPagination(url) {
@@ -59,14 +52,12 @@ export default {
 
   async deleteFavourites(id) {
     const url = `/commerce/products/${id}/favourites?`;
-    return axios.delete(
-      this.baseURL + url,{
-        headers: {
-          account: this.accountID,
-          Authorization: localStorage.accessToken,
-        },
-      }
-    );
+    return axios.delete(this.baseURL + url, {
+      headers: {
+        account: this.accountID,
+        Authorization: localStorage.accessToken,
+      },
+    });
   },
 
   errorHandler(error) {
