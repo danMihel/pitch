@@ -1,8 +1,8 @@
 <template>
   <div class="card-container">
-    <span class="doc__title"> {{ card.title }} %%{{ card.id }} </span>
-    <div @click="add">Like</div>
-    <div v-if="card.isInFavourites" @click="del">inFavorit</div>
+    <span class="doc__title"> {{ card.title }}</span>
+    <img class="like-icon" v-if="card.isInFavourites" @click="del" src="@/assets/likeRed.png"/>
+    <img class="like-icon" v-else @click="add" src="@/assets/likeBlack.png"/>
   </div>
 </template>
 <script>
@@ -41,5 +41,11 @@ export default {
 }
 .doc__title {
   font-weight: 600;
+}
+.like-icon{
+  height: 35px;
+  width: 35px;
+  padding: 10px;
+  border: 1px solid rgb(151, 151, 151)
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <nav>
+  <nav v-if="this.$store.state.AuthModule.logged">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/catalog">Catalog</router-link> |
     <router-link to="/favourites">Favourites</router-link> |
-    <router-link to="/login">Login</router-link>
+    <span>Logout</span>
   </nav>
   <router-view/>
 </template>
@@ -25,6 +25,12 @@ nav {
 nav a {
   font-weight: bold;
   color: #2c3e50;
+}
+
+nav span {
+  font-weight: bold;
+  color: #2c3e50;
+  cursor: pointer;
 }
 
 nav a.router-link-exact-active {
