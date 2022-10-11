@@ -1,5 +1,5 @@
 <template>
-    <div class="about">
+    <div v-if="this.$store.state.FavouritesModule.isLoade === true"  class="about">
       <h1>Favourites</h1>
       <Paginator
         @change="changePage"
@@ -10,6 +10,7 @@
         <Card :card="item.product" :key="item.id" />
       </div>
     </div>
+    <div v-else class="favourites__spinner"></div>
   </template>
   <script>
   import Card from "@/components/Card.vue";
@@ -33,4 +34,24 @@
     },
   };
   </script>
+  <style>
+ @keyframes donut-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .favourites__spinner {
+    display: inline-block;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #b4b4b4;
+    margin-top: 10%;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: donut-spin 1.2s linear infinite;
+  }
+</style>
   

@@ -5,7 +5,7 @@ export const CatalogModule = {
 
   state() {
     return {
-      isLoade: true,
+      isLoade: false,
       catalog: [],
       currentPage: 0,
       totalPage: 0,

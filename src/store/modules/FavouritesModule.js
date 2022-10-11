@@ -5,7 +5,7 @@ export const FavouritesModule = {
 
   state() {
     return {
-      isLoade: true,
+      isLoade: false,
       favourites: [],
       currentPage: 0,
       totalPage: 0,

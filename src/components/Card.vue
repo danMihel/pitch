@@ -2,7 +2,7 @@
   <div class="card-container">
     <div class="doc__title"> {{ card.title }}</div>
     <div class="like-icon">
-      <img v-if="card.isInFavourites" @click="del" src="@/assets/likeRed.png"/>
+      <img v-if="card.isInFavourites || fav === true " @click="del" src="@/assets/likeRed.png"/>
       <img v-else @click="add" src="@/assets/likeBlack.png"/>
     </div>
   </div>
@@ -10,17 +10,22 @@
 <script>
 export default {
   name: "card",
+  data(){
+    return{
+      fav: false
+    }
+  },
   methods: {
     async add() {
       await this.$store.commit("FavouritesModule/setFavId", this.card.id);
       await this.$store.dispatch("FavouritesModule/onAddFavourites", this.card.id);
-      await this.$store.dispatch("CatalogModule/onCatalog");
+      this.fav = true;
     },
     async del() {
       console.log("dell");
       await this.$store.commit("FavouritesModule/setFavId", this.card.id);
       await this.$store.dispatch("FavouritesModule/onDeleteFavourites", this.card.id);
-      await this.$store.dispatch("CatalogModule/onCatalog");
+      this.fav = false;
       await this.$store.dispatch("FavouritesModule/onFavourites");
     },
   },

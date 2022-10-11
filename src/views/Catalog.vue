@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div v-if="this.$store.state.CatalogModule.isLoade === true" class="about">
     <h1>Catalog</h1>
     <Paginator
       @change="changePage"
@@ -7,9 +7,10 @@
       :totalPage="this.$store.state.CatalogModule.totalPage"
     />
     <div v-for="item in this.$store.state.CatalogModule.catalog" :key="item.id">
-      <Card  @change="addFav"  :card="item" :key="item.id" />
+      <Card @change="addFav" :card="item" :key="item.id" />
     </div>
   </div>
+  <div v-else class="catalog__spinner"></div>
 </template>
 <script>
 import Card from "@/components/Card.vue";
@@ -24,13 +25,13 @@ export default {
     changePage(pageNumber) {
       this.$store.commit("CatalogModule/setPage", pageNumber);
       this.$store.dispatch("CatalogModule/onCatalog");
-      console.log(this.$store.state.CatalogModule.currentPage, 'curren page');
+      console.log(this.$store.state.CatalogModule.currentPage, "curren page");
     },
-    addFav(id){
-        console.log(id, 'asd')
-        this.$store.commit("FavouritesModule/setFavId", id);
-        this.$store.dispatch("FavouritesModule/onAddFavourites");
-      },
+    addFav(id) {
+      console.log(id, "asd");
+      this.$store.commit("FavouritesModule/setFavId", id);
+      this.$store.dispatch("FavouritesModule/onAddFavourites");
+    },
   },
   mounted() {
     this.$store.dispatch("CatalogModule/onCatalog");
@@ -39,3 +40,23 @@ export default {
   },
 };
 </script>
+<style>
+ @keyframes donut-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .catalog__spinner {
+    display: inline-block;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #b4b4b4;
+    margin-top: 10%;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: donut-spin 1.2s linear infinite;
+  }
+</style>
