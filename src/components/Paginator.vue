@@ -45,7 +45,7 @@
     justify-content: center;
 }
 .active{
-    color: blue;
-    font-size: 1.1rem;
+    color: #4864df;
+    font-size: 1.3rem;
 }
 </style>

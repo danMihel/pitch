@@ -1,13 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import store from '@/store'
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
+
   {
     path: '/login',
     name: 'login',
@@ -23,11 +18,6 @@ const routes = [
     name:  'favourites',
     component: () => import('@/views/Favourites.vue')
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('@/views/AboutView.vue')
-  }
 ]
 
 const router = createRouter({
