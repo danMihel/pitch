@@ -35,7 +35,6 @@ export const CatalogModule = {
         })
         .catch((error) => {
           console.log(error, "error");
-          API.errorHandler(error.status);
         })
         .finally(() => {
           commit("setSpinner", true);
@@ -48,7 +47,6 @@ export const CatalogModule = {
         })
         .catch((error) => {
           console.log(error, "error");
-          API.errorHandler(error.status);
         });
     },
   },

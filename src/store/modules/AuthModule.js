@@ -48,7 +48,6 @@ export const AuthModule = {
         })
         .catch((error) => {
           console.log(error, "error");
-          API.errorHandler(error.status);
         })
         .finally(() => {
           commit("setSpinner", true);

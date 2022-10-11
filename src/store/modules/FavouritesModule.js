@@ -38,7 +38,6 @@ export const FavouritesModule = {
         })
         .catch((error) => {
           console.log(error, "error");
-          API.errorHandler(error.status);
         })
         .finally(() => {
           commit("setSpinner", true);
@@ -54,7 +53,6 @@ export const FavouritesModule = {
         })
         .catch((error) => {
           console.log(error, "error");
-          API.errorHandler(error.status);
         });
     },
     async onAddFavourites( {state}) {
@@ -63,7 +61,6 @@ export const FavouritesModule = {
           })
           .catch((error) => {
             console.log(error, "error");
-            API.errorHandler(error.status);
           });
       },
 
@@ -73,7 +70,6 @@ export const FavouritesModule = {
           })
           .catch((error) => {
             console.log(error, "error");
-            API.errorHandler(error.status);
           });
       },
   },
