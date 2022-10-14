@@ -29,7 +29,7 @@ export default {
     },
     addFav(id) {
       this.$store.commit("FavouritesModule/setFavId", id);
-      this.$store.dispatch("FavouritesModule/onAddFavourites");
+      this.$store.dispatch("FavouritesModule/onAddFavourites");    
     },
   },
   mounted() {
