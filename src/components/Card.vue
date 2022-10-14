@@ -24,7 +24,7 @@ export default {
     async del() {
       await this.$store.commit("FavouritesModule/setFavId", this.card.id);
       await this.$store.dispatch("FavouritesModule/onDeleteFavourites", this.card.id);
-      this.fav = true;
+      this.fav = false;
       await this.$store.dispatch("FavouritesModule/onFavourites");
     },
   },
